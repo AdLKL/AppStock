@@ -13,8 +13,8 @@ class MyUser extends Equatable {
   MyUser copyWith({String? userId, String? email, String? name}) {
     return MyUser(
         userId: userId ?? this.userId,
-        email: email ?? this.userId,
-        name: name ?? this.userId);
+        email: email ?? this.email,
+        name: name ?? this.name);
   }
 
   MyUserEntity toEntity() {
@@ -27,6 +27,5 @@ class MyUser extends Equatable {
   }
 
   @override
-  // TODO: implement props
   List<Object?> get props => [userId, email, name];
 }

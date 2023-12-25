@@ -22,10 +22,11 @@ class AuthenticationBloc
       if (event.user != null) {
         emit(AuthenticationState.authenticated(event.user!));
       } else {
-        emit(AuthenticationState.unauthenticated());
+        emit(const AuthenticationState.unauthenticated());
       }
     });
   }
+
   @override
   Future<void> close() {
     _userSubscription.cancel();

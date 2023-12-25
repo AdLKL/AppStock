@@ -264,6 +264,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "6.1.1"
+  shrink_sidemenu:
+    dependency: "direct main"
+    description:
+      name: shrink_sidemenu
+      sha256: "556436717d004ed4573522dcc8772da50f4b7ed3b3a238c0c0e11bc265a0c95a"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.0+2-null-safety"
   sky_engine:
     dependency: transitive
     description: flutter
