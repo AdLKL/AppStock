@@ -1,4 +1,6 @@
 import 'package:appstock/blocs/sign_in_bloc/sign_in_bloc.dart';
+import 'package:appstock/screens/profile_page.dart';
+import 'package:appstock/screens/stock_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shrink_sidemenu/shrink_sidemenu.dart';
@@ -58,7 +60,15 @@ class SideMenuList extends StatelessWidget {
               name: 'Profile',
               iconData: Icons.person,
               boxColor: Colors.transparent,
-              onTap: () {}),
+              onTap: () {
+                // Navigate to the ProfilePage when the Profile button is tapped
+                Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => ProfilePage()),
+                );
+                if (menuKey.currentState!.isOpened) {
+                  menuKey.currentState!.closeSideMenu();
+                }
+              }),
           const SizedBox(
             height: 40,
           ),
@@ -66,7 +76,14 @@ class SideMenuList extends StatelessWidget {
               name: 'Stock',
               iconData: Icons.add_box,
               boxColor: Colors.transparent,
-              onTap: () {}),
+              onTap: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => StockPage()),
+                );
+                if (menuKey.currentState!.isOpened) {
+                  menuKey.currentState!.closeSideMenu();
+                }
+              }),
           const SizedBox(
             height: 40,
           ),
