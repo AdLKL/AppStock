@@ -50,7 +50,7 @@ class FirebaseUserRepo implements UserRepository {
   Future<void> setUserData(MyUser myUser) async {
     try {
       await usersCollection
-          .doc(myUser.email)
+          .doc(myUser.userId)
           .set(myUser.toEntity().toDocument());
     } catch (e) {
       log(e.toString());

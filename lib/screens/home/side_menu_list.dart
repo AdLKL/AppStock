@@ -1,6 +1,4 @@
 import 'package:appstock/blocs/sign_in_bloc/sign_in_bloc.dart';
-import 'package:appstock/screens/profile_page.dart';
-import 'package:appstock/screens/stock_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shrink_sidemenu/shrink_sidemenu.dart';
@@ -18,7 +16,7 @@ class SideMenuList extends StatelessWidget {
           const ListTile(
             leading: CircleAvatar(
               maxRadius: 40,
-              backgroundImage: AssetImage(AutofillHints.photo),
+              // backgroundImage: AssetImage(AutofillHints.photo),
             ),
             title: Text('User',
                 style: TextStyle(
@@ -37,7 +35,7 @@ class SideMenuList extends StatelessWidget {
             height: 12,
           ),
           const Divider(
-            color: Colors.black54,
+            color: Color.fromARGB(137, 255, 255, 255),
           ),
           const SizedBox(
             height: 18,
@@ -45,7 +43,7 @@ class SideMenuList extends StatelessWidget {
           buttonDecoration(
               name: 'Home',
               iconData: Icons.home,
-              boxColor: Colors.orange.shade300,
+              boxColor: Color.fromARGB(255, 11, 165, 236),
               onTap: () {
                 if (menuKey.currentState!.isOpened) {
                   menuKey.currentState!.closeSideMenu();
@@ -60,15 +58,7 @@ class SideMenuList extends StatelessWidget {
               name: 'Profile',
               iconData: Icons.person,
               boxColor: Colors.transparent,
-              onTap: () {
-                // Navigate to the ProfilePage when the Profile button is tapped
-                Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => ProfilePage()),
-                );
-                if (menuKey.currentState!.isOpened) {
-                  menuKey.currentState!.closeSideMenu();
-                }
-              }),
+              onTap: () {}),
           const SizedBox(
             height: 40,
           ),
@@ -76,14 +66,7 @@ class SideMenuList extends StatelessWidget {
               name: 'Stock',
               iconData: Icons.add_box,
               boxColor: Colors.transparent,
-              onTap: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => StockPage()),
-                );
-                if (menuKey.currentState!.isOpened) {
-                  menuKey.currentState!.closeSideMenu();
-                }
-              }),
+              onTap: () {}),
           const SizedBox(
             height: 40,
           ),
@@ -96,7 +79,7 @@ class SideMenuList extends StatelessWidget {
             height: 34,
           ),
           const Divider(
-            color: Colors.black54,
+            color: Color.fromARGB(137, 255, 255, 255),
           ),
           const SizedBox(
             height: 40,
@@ -131,7 +114,7 @@ class SideMenuList extends StatelessWidget {
         ),
         child: Row(
           children: [
-            Icon(iconData, size: 28, color: Colors.orange),
+            Icon(iconData, size: 28, color: Color.fromARGB(255, 255, 255, 255)),
             const SizedBox(
               width: 15,
             ),

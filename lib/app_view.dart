@@ -16,11 +16,11 @@ class MyAppView extends StatelessWidget {
           colorScheme: const ColorScheme.light(
               background: Colors.white,
               onBackground: Colors.black,
-              primary: Color.fromRGBO(206, 147, 216, 1),
+              primary: Color.fromARGB(255, 11, 165, 236),
               onPrimary: Colors.black,
-              secondary: Color.fromRGBO(244, 143, 177, 1),
+              secondary: Color.fromARGB(255, 5, 164, 237),
               onSecondary: Colors.white,
-              error: Colors.red,
+              error: Color.fromARGB(255, 0, 130, 230),
               outline: Color(0xFF424242)),
         ),
         home: BlocBuilder<AuthenticationBloc, AuthenticationState>(
