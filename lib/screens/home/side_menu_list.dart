@@ -1,6 +1,8 @@
 import 'package:appstock/blocs/sign_in_bloc/sign_in_bloc.dart';
 import 'package:appstock/screens/home/add_product_page.dart';
 import 'package:appstock/screens/home/add_warehouse_page.dart';
+import 'package:appstock/screens/profile_page.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shrink_sidemenu/shrink_sidemenu.dart';
@@ -11,23 +13,25 @@ class SideMenuList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    User? currentUser = FirebaseAuth.instance.currentUser;
+
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 12, vertical: 20),
       child: ListView(
         children: [
-          const ListTile(
-            leading: CircleAvatar(
-              maxRadius: 40,
+          ListTile(
+            leading: const CircleAvatar(
+              maxRadius: 30,
               // backgroundImage: AssetImage(AutofillHints.photo),
             ),
-            title: Text('User',
-                style: TextStyle(
+            title: Text(currentUser?.displayName ?? 'Adnane',
+                style: const TextStyle(
                   fontWeight: FontWeight.w600,
                   fontSize: 20,
                   color: Colors.white,
                 )),
-            subtitle: Text('email@email.com',
-                style: TextStyle(
+            subtitle: Text(currentUser?.email ?? 'email@email.com',
+                style: const TextStyle(
                   fontWeight: FontWeight.w400,
                   fontSize: 16,
                   color: Colors.white,
@@ -99,7 +103,12 @@ class SideMenuList extends StatelessWidget {
               name: 'Profile',
               iconData: Icons.person,
               boxColor: Colors.transparent,
-              onTap: () {}),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ProfilePage()),
+                );
+              }),
           const SizedBox(
             height: 20,
           ),
