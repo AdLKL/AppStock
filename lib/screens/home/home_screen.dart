@@ -209,7 +209,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 num.parse(imageWidthInCm.toStringAsFixed(2)) as double;
             double newImageHeight =
                 num.parse(imageHeightInCm.toStringAsFixed(2)) as double;
-
+            // Compare the dimensions with the free space in the warehouse
+            compareWithFreeSpace(newImageWidth, newImageHeight);
 // Now, you can use imageWidthInCm and imageHeightInCm for comparison
             print('Image Width in cm: $newImageWidth');
             print('Image Height in cm: $newImageHeight');
@@ -224,5 +225,37 @@ class _HomeScreenState extends State<HomeScreen> {
       }
     }
     ;
+  }
+
+  void compareWithFreeSpace(double imageWidth, double imageHeight) {
+    // Fetch the free space dimensions from Firestore or use local data
+    // For demonstration purposes, assuming you have a List of warehouse data
+    List<Map<String, dynamic>> warehouses = [
+      {'width_free': 10.0, 'height_free': 15.0},
+      {'width_free': 8.0, 'height_free': 20.0},
+      // Add more warehouse data as needed
+    ];
+
+    // Loop through warehouses and compare dimensions
+    for (var warehouse in warehouses) {
+      double warehouseWidth = warehouse['width_free'] as double;
+      double warehouseHeight = warehouse['height_free'] as double;
+
+      if (imageWidth <= warehouseWidth && imageHeight <= warehouseHeight) {
+        // Display the warehouse information in a popup
+        showWarehousePopup(warehouse);
+        break; // Stop after finding the first suitable warehouse
+      }
+    }
+  }
+
+  void showWarehousePopup(Map<String, dynamic> warehouse) {
+    // Use your preferred way to display a popup/dialog
+    // You can use the `showDialog` method or any custom popup implementation
+    // Display the warehouse information, e.g., name, rack number, shelf number, etc.
+    print('Warehouse Information:');
+    print('Name: ${warehouse['name']}');
+    print('Rack Number: ${warehouse['rack_num']}');
+    print('Shelf Number: ${warehouse['shelf_num']}');
   }
 }

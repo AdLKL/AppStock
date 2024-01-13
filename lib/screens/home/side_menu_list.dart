@@ -1,4 +1,6 @@
 import 'package:appstock/blocs/sign_in_bloc/sign_in_bloc.dart';
+import 'package:appstock/screens/home/add_product_page.dart';
+import 'package:appstock/screens/home/add_warehouse_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shrink_sidemenu/shrink_sidemenu.dart';
@@ -52,7 +54,46 @@ class SideMenuList extends StatelessWidget {
                 }
               }),
           const SizedBox(
-            height: 40,
+            height: 20,
+          ),
+          ExpansionTile(
+            collapsedIconColor: Colors.white,
+            iconColor: Colors.white,
+            textColor: Colors.white,
+            title: buttonDecoration(
+                name: 'Stock',
+                iconData: Icons.add_box,
+                boxColor: Colors.transparent,
+                onTap: () {}),
+            children: [
+              buttonDecoration(
+                name: 'Products',
+                iconData: Icons.category,
+                boxColor: Colors.transparent,
+                onTap: () {
+                  // Handle selection for 'Products'
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => AddProductPage()),
+                  );
+                },
+              ),
+              buttonDecoration(
+                name: 'Racks',
+                iconData: Icons.layers,
+                boxColor: Colors.transparent,
+                onTap: () {
+                  // Handle selection for 'Racks'
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => AddWarehousePage()),
+                  );
+                },
+              ),
+            ],
+          ),
+          const SizedBox(
+            height: 20,
           ),
           buttonDecoration(
               name: 'Profile',
@@ -60,29 +101,13 @@ class SideMenuList extends StatelessWidget {
               boxColor: Colors.transparent,
               onTap: () {}),
           const SizedBox(
-            height: 40,
-          ),
-          buttonDecoration(
-              name: 'Stock',
-              iconData: Icons.add_box,
-              boxColor: Colors.transparent,
-              onTap: () {}),
-          const SizedBox(
-            height: 40,
-          ),
-          buttonDecoration(
-              name: 'Settings',
-              iconData: Icons.settings,
-              boxColor: Colors.transparent,
-              onTap: () {}),
-          const SizedBox(
-            height: 34,
+            height: 20,
           ),
           const Divider(
             color: Color.fromARGB(137, 255, 255, 255),
           ),
           const SizedBox(
-            height: 40,
+            height: 20,
           ),
           buttonDecoration(
               name: 'Log out',

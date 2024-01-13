@@ -43,6 +43,7 @@ dependencies:
   path: 
   http: 
   image: 
+  firebase_database: 
 
   user_repository:
     path: packages/user_repository
