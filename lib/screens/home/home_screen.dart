@@ -9,6 +9,7 @@ import 'dart:io';
 import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:http/http.dart' as http;
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -93,9 +94,9 @@ class _HomeScreenState extends State<HomeScreen> {
               Expanded(
                 child: Align(
                   alignment: Alignment.bottomRight,
-                  child: Column(
+                  child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
-                    crossAxisAlignment: CrossAxisAlignment.end,
+                    // crossAxisAlignment: CrossAxisAlignment.end,
                     children: <Widget>[
                       Padding(
                         padding: EdgeInsets.only(right: 10.0),
@@ -210,7 +211,7 @@ class _HomeScreenState extends State<HomeScreen> {
             double newImageHeight =
                 num.parse(imageHeightInCm.toStringAsFixed(2)) as double;
             // Compare the dimensions with the free space in the warehouse
-            compareWithFreeSpace(newImageWidth, newImageHeight);
+            fetchWarehouseData(newImageWidth, newImageHeight);
 // Now, you can use imageWidthInCm and imageHeightInCm for comparison
             print('Image Width in cm: $newImageWidth');
             print('Image Height in cm: $newImageHeight');
@@ -227,35 +228,62 @@ class _HomeScreenState extends State<HomeScreen> {
     ;
   }
 
-  void compareWithFreeSpace(double imageWidth, double imageHeight) {
-    // Fetch the free space dimensions from Firestore or use local data
-    // For demonstration purposes, assuming you have a List of warehouse data
-    List<Map<String, dynamic>> warehouses = [
-      {'width_free': 10.0, 'height_free': 15.0},
-      {'width_free': 8.0, 'height_free': 20.0},
-      // Add more warehouse data as needed
-    ];
+  Future<void> fetchWarehouseData(double imageWidth, double imageHeight) async {
+    try {
+      QuerySnapshot warehouseSnapshot =
+          await FirebaseFirestore.instance.collection('warehouses').get();
 
-    // Loop through warehouses and compare dimensions
-    for (var warehouse in warehouses) {
-      double warehouseWidth = warehouse['width_free'] as double;
-      double warehouseHeight = warehouse['height_free'] as double;
+      List<QueryDocumentSnapshot> warehouses = warehouseSnapshot.docs;
 
-      if (imageWidth <= warehouseWidth && imageHeight <= warehouseHeight) {
-        // Display the warehouse information in a popup
-        showWarehousePopup(warehouse);
-        break; // Stop after finding the first suitable warehouse
+      // Loop through warehouses and compare dimensions
+      for (var warehouse in warehouses) {
+        Map<String, dynamic> warehouseData =
+            warehouse.data() as Map<String, dynamic>;
+
+        double warehouseWidth = warehouseData['width_free'] as double;
+        double warehouseHeight = warehouseData['height_free'] as double;
+
+        if (imageWidth <= warehouseWidth && imageHeight <= warehouseHeight) {
+          // Display the warehouse information in a popup
+          showWarehousePopup(context, warehouseData);
+          break; // Stop after finding the first suitable warehouse
+        } else {
+          print('errrrror');
+        }
       }
+    } catch (e) {
+      print('Error fetching warehouse data from Firestore: $e');
+      // Handle the error, e.g., show an error message to the user
     }
   }
 
-  void showWarehousePopup(Map<String, dynamic> warehouse) {
-    // Use your preferred way to display a popup/dialog
-    // You can use the `showDialog` method or any custom popup implementation
-    // Display the warehouse information, e.g., name, rack number, shelf number, etc.
-    print('Warehouse Information:');
-    print('Name: ${warehouse['name']}');
-    print('Rack Number: ${warehouse['rack_num']}');
-    print('Shelf Number: ${warehouse['shelf_num']}');
+  void showWarehousePopup(
+      BuildContext context, Map<String, dynamic> warehouse) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Free Space Information'),
+          content: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text('Name: ${warehouse['nom']}'),
+              Text('Address: ${warehouse['adresse']}'),
+              Text('Rack Number: ${warehouse['rack_num']}'),
+              Text('Shelf Number: ${warehouse['shelf_num']}'),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text('Close'),
+            ),
+          ],
+        );
+      },
+    );
   }
 }
