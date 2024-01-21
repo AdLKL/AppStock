@@ -1,16 +1,32 @@
-# appstock
+<h1 align="center" id="title">Smart Stock Management</h1>
 
-A new Flutter project.
+<p align="center"><img src="https://socialify.git.ci/AdLKL/AppStock/image?description=1&amp;font=Rokkitt&amp;issues=1&amp;language=1&amp;name=1&amp;owner=1&amp;pattern=Signal&amp;stargazers=1&amp;theme=Dark" alt="project-image"></p>
 
-## Getting Started
+<h2>Project Screenshots:</h2>
 
-This project is a starting point for a Flutter application.
+<img src="link:image.png" alt="project-screenshot" width="100" height="100/">
 
-A few resources to get you started if this is your first Flutter project:
+<img src="link:image.png" alt="project-screenshot" width="100" height="100/">
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+  
+  
+<h2>🧐 Features</h2>
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Here're some of the project's best features:
+
+*   Import Warehouse Data
+*   List Warehouse Data
+*   Import or Take a picture of the product
+*   Calculate the Product Dimensions
+*   Compare the Product Dimensions with the Free space
+*   Display the Coordinates of the Free Space
+
+  
+  
+<h2>💻 Built with</h2>
+
+Technologies used in the project:
+
+*   Flutter
+*   Firebase
+*   Deep Learning(YOLOv8)
