@@ -1,13 +1,8 @@
-<h1 align="center" id="title">Smart Stock Management</h1>
-
 <p align="center"><img src="https://socialify.git.ci/AdLKL/AppStock/image?description=1&amp;font=Rokkitt&amp;issues=1&amp;language=1&amp;name=1&amp;owner=1&amp;pattern=Signal&amp;stargazers=1&amp;theme=Dark" alt="project-image"></p>
 
 <h2>Project Screenshots:</h2>
 
-<img src="link:image.png" alt="project-screenshot" width="100" height="100/">
-
-<img src="link:image.png" alt="project-screenshot" width="100" height="100/">
-
+![Project screenshot](Rapport-img/acceuil.png)
   
   
 <h2>🧐 Features</h2>
